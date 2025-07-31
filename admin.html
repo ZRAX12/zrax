@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>پنل مدیریت</title>
+</head>
+<body>
+  <h1>افزودن ویدیو جدید</h1>
+  <form id="videoForm">
+    <input type="text" placeholder="عنوان" id="title" required><br>
+    <input type="text" placeholder="youtube یا aparat" id="platform" required><br>
+    <input type="text" placeholder="کد ویدیو (videoId)" id="videoId" required><br>
+    <textarea placeholder="توضیحات" id="description"></textarea><br>
+    <button type="submit">تولید JSON</button>
+  </form>
+  <pre id="output"></pre>
+
+  <script>
+    const form = document.getElementById('videoForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = {
+        id: Date.now().toString(),
+        title: document.getElementById('title').value,
+        platform: document.getElementById('platform').value.toLowerCase(),
+        videoId: document.getElementById('videoId').value,
+        description: document.getElementById('description').value
+      };
+      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+    });
+  </script>
+</body>
+</html>
